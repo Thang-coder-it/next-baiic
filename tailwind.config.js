@@ -14,7 +14,4 @@ module.exports = {
     },
   },
   plugins: [],
-  corePlugins: {
-    preflight: false, // Nếu muốn vô hiệu hóa reset CSS của Tailwind
-  },
 };

@@ -72,7 +72,6 @@ function Sidebar({ collapsed, setCollapsed }) {
       width={200}
       collapsedWidth={80}
       style={{
-        overflowY: "auto",
         height: "100vh",
         position: "fixed",
         left: 0,
