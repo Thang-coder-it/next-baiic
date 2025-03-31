@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Layout, theme } from "antd";
 
+import LayoutContext from "@/contexts";
 import { Slidebar } from "@/components";
 
 function LayoutDasboard({ children }) {
@@ -14,39 +15,41 @@ function LayoutDasboard({ children }) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <Layout
-      style={{
-        minHeight: "100vh",
-        maxWidth: "100%",
-        overflow: "hidden",
-      }}
-    >
-      <Slidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+    <LayoutContext>
       <Layout
         style={{
-          marginLeft: collapsed ? 80 : 200,
-          transition: "margin-left 0.39s ease",
+          minHeight: "100vh",
+          maxWidth: "100%",
+          overflow: "hidden",
         }}
       >
-        <Content
+        <Slidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Layout
           style={{
-            margin: "0 5px",
-            minWidth: 135,
+            marginLeft: collapsed ? 80 : 200,
+            transition: "margin-left 0.39s ease",
           }}
         >
-          <div
+          <Content
             style={{
-              padding: 24,
-              minHeight: 360,
-              background: colorBgContainer,
-              borderRadius: borderRadiusLG,
+              margin: "0 5px",
+              minWidth: 135,
             }}
           >
-            {children}
-          </div>
-        </Content>
+            <div
+              style={{
+                padding: 24,
+                minHeight: 360,
+                background: colorBgContainer,
+                borderRadius: borderRadiusLG,
+              }}
+            >
+              {children}
+            </div>
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </LayoutContext>
   );
 }
 export default LayoutDasboard;

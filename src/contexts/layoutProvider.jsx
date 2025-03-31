@@ -10,16 +10,14 @@ function LayoutContext({ children }) {
   );
 
   const resuilt = {
-    data: {
-      collapsed,
-    },
+    data: layoutConfig,
     action: {
       setLayoutConfig,
     },
   };
 
   useEffect(() => {
-    localStorage.setItem("configLayout", JSON.stringify(collapsed));
+    localStorage.setItem("configLayout", JSON.stringify(layoutConfig));
   }, [layoutConfig]);
 
   return (
