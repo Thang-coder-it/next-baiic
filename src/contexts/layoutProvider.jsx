@@ -1,27 +1,32 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useLayoutEffect,
+  useEffect,
+  useState,
+} from "react";
 
 const LayoutProvider = createContext();
 
 function LayoutContext({ children }) {
-  const [layoutConfig, setLayoutConfig] = useState(
-    JSON.parse(localStorage.getItem("configLayout")) ?? {
-      collapsed: false,
+  const [data, setData] = useState({ collapsed: false });
+
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      setData(
+        (prev) => JSON.parse(localStorage.getItem("configLayout")) ?? prev
+      );
     }
-  );
+  }, []);
 
-  const resuilt = {
-    data: layoutConfig,
-    action: {
-      setLayoutConfig,
-    },
-  };
-
-  useEffect(() => {
-    localStorage.setItem("configLayout", JSON.stringify(layoutConfig));
-  }, [layoutConfig]);
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("configLayout", JSON.stringify(data));
+    }
+  }, [data]);
 
   return (
-    <LayoutProvider.Provider value={resuilt}>
+    <LayoutProvider.Provider value={{ data, setData }}>
       {children}
     </LayoutProvider.Provider>
   );
@@ -30,5 +35,5 @@ function LayoutContext({ children }) {
 export default LayoutContext;
 
 export const getConfigLayout = () => {
-  return useContext(Contextlayout);
+  return useContext(LayoutProvider);
 };

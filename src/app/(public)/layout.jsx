@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Layout, theme } from "antd";
 
 import LayoutContext from "@/contexts";
-import { Slidebar } from "@/components";
+import { Slidebar, Header } from "@/components";
 
 function LayoutDasboard({ children }) {
   const { Content } = Layout;
@@ -30,9 +30,10 @@ function LayoutDasboard({ children }) {
             transition: "margin-left 0.39s ease",
           }}
         >
+          <Header />
           <Content
             style={{
-              margin: "0 5px",
+              margin: "10px 5px",
               minWidth: 135,
             }}
           >

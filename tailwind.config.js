@@ -13,5 +13,9 @@ module.exports = {
       },
     },
   },
+  corePlugins: {
+    preflight: false, // Tắt reset CSS của Tailwind nếu cần
+  },
+  important: true, // Đặt Tailwind có độ ưu tiên cao nhất
   plugins: [],
 };
