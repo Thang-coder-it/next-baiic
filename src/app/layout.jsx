@@ -1,5 +1,5 @@
-import "@/assets/css/globals.css";
 import "antd/dist/reset.css"; // Import CSS Antd (Ant Design 5+)
+import "@/assets/css/globals.css";
 import { AntdRegistry } from "@ant-design/nextjs-registry"; // Hỗ trợ CSS-in-JS
 
 export const metadata = {
